@@ -1,0 +1,9 @@
+# runtime cache
+__pycache__/
+
+# virtual environments
+env/
+activate
+
+# data
+data/
