@@ -1,0 +1,12 @@
+table{
+    background-color: ghostwhite;
+}
+
+table th {
+    font-weight: bold;
+    background-color: lightcyan;
+}
+
+table tr:hover {
+    background-color: lightyellow;
+}

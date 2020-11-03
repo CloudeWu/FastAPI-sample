@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <link href="{{ url_for('static', path='index.css') }}" rel="stylesheet">
+</head>
+<body>
+    <h3>{{word}}</h3>
+    <table>
+        <tr>
+            <th>candidates</th>
+            <th>dist_info</th>
+        </tr>
+        {% for candidate, dist_info in results.items() -%}
+            <tr>
+                <td>{{candidate}}</td>
+                <td>{{dist_info}}</td>
+            </tr>
+        {%- endfor %}
+    </table>
+</body>
+</html>
