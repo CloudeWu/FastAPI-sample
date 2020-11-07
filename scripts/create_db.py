@@ -31,7 +31,7 @@ CREATE INDEX idx_LB_{N}gram ON {N}gram (query);
 sql_handler = SQLHandler(DATABASE_PATH)
 logger = LogHelper(log_level=1, log_file=LOG_PATH)
 
-for n in range(2,3):
+for n in range(2,7):
     logger.log('info', f'processing {n} gram file...')
     f = open(DATA_PATH.format(N=n), 'r', encoding='utf-8')
 
@@ -68,7 +68,8 @@ for n in range(2,3):
         sql_handler.execute(sql_query)
     
     # create index to speed up searching
-    sql_query = CREATE_QUERY_INDEX(N=n)
+    logger.log('debug', 'creating index tables...')
+    sql_query = CREATE_QUERY_INDEX.format(N=n)
     sql_handler.execute(sql_query)
 
     f.close()
