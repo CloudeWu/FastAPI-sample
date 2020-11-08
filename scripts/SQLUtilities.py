@@ -10,16 +10,20 @@ class SQLHandler(object):
         results = []
 
         conn = sqlite3.connect(self.database)
+        conn.execute('BEGIN TRANSACTION')
         try:
             for query in queries:
                 self.log('debug', f'Exec query: {query}')
                 cursor = conn.execute(query)
                 results.append(cursor.fetchall())
-            self.log('debug', 'Tx commit')
-            conn.commit()
         except Exception as e:
             self.log('warn', f'commit rollback: {queries}')
             self.log('warn', e)
+
+        self.log('debug', 'Tx commit')
+        conn.execute('COMMIT')
+        conn.commit()
+
         conn.close()
 
         return results
